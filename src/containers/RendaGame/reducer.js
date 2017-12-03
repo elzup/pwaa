@@ -8,6 +8,7 @@ export const initialState: State = {
 	isStarting: false,
 	time: 0,
 	score: 0,
+	prevScore: 0,
 	maxScore: 0,
 }
 
@@ -31,6 +32,7 @@ export default function(state: State = initialState, action: Action): State {
 				...state,
 				isStarting: false,
 				score: 0,
+				prevScore: state.score,
 				maxScore: Math.max(state.score, state.maxScore),
 			}
 

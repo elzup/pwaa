@@ -36,7 +36,12 @@ class RengaGame extends React.Component<Props> {
 				<p>
 					<button onClick={props.rendaGameStart}>Start!</button>
 				</p>
-				<span>MaxScore: {props.game.maxScore}</span>
+				<p>
+					<span>Score: {props.game.prevScore}</span>
+				</p>
+				<p>
+					<span>MaxScore: {props.game.maxScore}</span>
+				</p>
 			</div>
 		)
 	}

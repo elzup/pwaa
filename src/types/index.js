@@ -38,5 +38,6 @@ export type RendaGame = {
 	isStarting: boolean,
 	time: number,
 	score: number,
+	prevScore: number,
 	maxScore: number,
 }
