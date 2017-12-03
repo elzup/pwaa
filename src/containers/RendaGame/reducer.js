@@ -40,6 +40,11 @@ export default function(state: State = initialState, action: Action): State {
 				score: state.score + action.scoreUp,
 			}
 
+		case 'persist/REHYDRATE':
+			return {
+				...state,
+				maxScore: action.payload.RendaGame.maxScore,
+			}
 		default:
 			return state
 	}
