@@ -33,3 +33,10 @@ export type Item = {
 	id: number,
 	name: string,
 }
+
+export type RendaGame = {
+	isStarting: boolean,
+	time: number,
+	score: number,
+	maxScore: number,
+}
