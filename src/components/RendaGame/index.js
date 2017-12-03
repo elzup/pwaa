@@ -35,6 +35,14 @@ class RengaGame extends React.Component<Props> {
 			<div>
 				<p>
 					<button onClick={props.rendaGameStart}>Start!</button>
+					<style jsx>{`
+						button {
+							width: 100%;
+							height: 200px;
+							background: blue;
+							color: white;
+						}
+					`}</style>
 				</p>
 				<p>
 					<span>Score: {props.game.prevScore}</span>
@@ -57,6 +65,15 @@ class RengaGame extends React.Component<Props> {
 				<p>Score: {props.game.score}</p>
 				<p>
 					<button onClick={() => props.rendaPoint(1)}>Tap</button>
+					<style jsx>{`
+						button {
+							margin-top: 100px;
+							width: 100%;
+							height: 200px;
+							background: blue;
+							color: white;
+						}
+					`}</style>
 				</p>
 			</div>
 		)
