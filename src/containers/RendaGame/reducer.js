@@ -13,6 +13,12 @@ export const initialState: State = {
 
 export default function(state: State = initialState, action: Action): State {
 	switch (action.type) {
+		case Actions.RENDA_TIME_COUNT:
+			return {
+				...state,
+				time: action.time,
+			}
+
 		case Actions.RENDA_GAME_START:
 			return {
 				...state,
@@ -25,7 +31,7 @@ export default function(state: State = initialState, action: Action): State {
 				...state,
 				isStarting: false,
 				score: 0,
-				maxScore: Math.max(action.score, state.maxScore),
+				maxScore: Math.max(state.score, state.maxScore),
 			}
 
 		case Actions.RENDA_POINT:

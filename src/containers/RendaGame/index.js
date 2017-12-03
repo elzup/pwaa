@@ -3,7 +3,8 @@
 import { connect, type Connector } from 'react-redux'
 import type { State } from '../../types'
 import RendaGameComponent, { type Props } from '../../components/RendaGame'
-import { rendaGameStart, rendaPoint, rendaGameEnd } from './actions'
+import { rendaPoint, rendaGameEnd } from './actions'
+import { gameStart } from './logic'
 // import * as selectors from './selectors'
 
 type OProps = {}
@@ -12,7 +13,7 @@ const ms = (state: State) => ({
 })
 
 const conn: Connector<OProps, Props> = connect(ms, {
-	rendaGameStart,
+	rendaGameStart: gameStart,
 	rendaPoint,
 	rendaGameEnd,
 })
