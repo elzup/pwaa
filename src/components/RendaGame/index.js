@@ -15,7 +15,6 @@ export type State = {
 
 class RengaGame extends React.Component<Props> {
 	render() {
-		const { props } = this
 		return (
 			<div>
 				<h1>連打ゲーム</h1>
@@ -34,7 +33,9 @@ class RengaGame extends React.Component<Props> {
 		}
 		return (
 			<div>
-				<button onClick={props.rendaGameStart}>Start!</button>
+				<p>
+					<button onClick={props.rendaGameStart}>Start!</button>
+				</p>
 				<span>MaxScore: {props.game.maxScore}</span>
 			</div>
 		)
@@ -47,8 +48,11 @@ class RengaGame extends React.Component<Props> {
 		}
 		return (
 			<div>
-				<span>Score: {props.game.score}</span>
-				<button onClick={() => props.rendaPoint(1)}>Tap</button>
+				<p>{props.game.time}</p>
+				<p>Score: {props.game.score}</p>
+				<p>
+					<button onClick={() => props.rendaPoint(1)}>Tap</button>
+				</p>
 			</div>
 		)
 	}

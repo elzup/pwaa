@@ -11,7 +11,7 @@ export function gameStart(): ThunkAction {
 	return async dispatch => {
 		dispatch(actions.rendaTimeCount(GAME_TIME))
 		dispatch(actions.rendaGameStart())
-		for (var i = 30; i >= 0; i--) {
+		for (var i = GAME_TIME; i >= 0; i--) {
 			await sleep(1000)
 			dispatch(actions.rendaTimeCount(i))
 		}
