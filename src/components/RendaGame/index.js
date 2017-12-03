@@ -20,15 +20,35 @@ class RengaGame extends React.Component<Props> {
 			<div>
 				<h1>連打ゲーム</h1>
 				<div>
-					<span>Score: {props.game.score}</span>
-					{!props.game.isStarting || <button>Tap</button>}
-					{props.game.isStarting || (
-						<div>
-							<button onClick={props.rendaGameStart}>Start!</button>
-							<span>MaxScore: {props.game.maxScore}</span>
-						</div>
-					)}
+					{this.renderStart()}
+					{this.renderProgress()}
 				</div>
+			</div>
+		)
+	}
+
+	renderStart = () => {
+		const { props } = this
+		if (props.game.isStarting) {
+			return null
+		}
+		return (
+			<div>
+				<button onClick={props.rendaGameStart}>Start!</button>
+				<span>MaxScore: {props.game.maxScore}</span>
+			</div>
+		)
+	}
+
+	renderProgress = () => {
+		const { props } = this
+		if (!props.game.isStarting) {
+			return null
+		}
+		return (
+			<div>
+				<span>Score: {props.game.score}</span>
+				<button onClick={() => props.rendaPoint(1)}>Tap</button>
 			</div>
 		)
 	}
