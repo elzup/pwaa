@@ -119,13 +119,16 @@ class Speed9Component extends React.Component<Props, State> {
 						width: 30%;
 					}
 
-					button: {
-						text-align: center;
-						background: blue;
+					button {
+						height: 100px;
+						background: #00900b;
+						width: 100%;
+						font-size: 3em;
+						color: white;
 					}
 
 					.disable {
-						color: gray;
+						background: gray;
 					}
 				`}</style>
 			</div>
