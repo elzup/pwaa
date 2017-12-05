@@ -8,14 +8,14 @@ export type Props = {
 }
 
 export type State = {
-	invervalId: number,
+	intervalId: number,
 	time: number,
-	process: 'start' | 'wait',
+	process: 'run' | 'wait',
 }
 
 class Speed9Component extends React.Component<Props, State> {
 	state = {
-		invervalId: 0,
+		intervalId: 0,
 		time: 0,
 		process: 'wait',
 	}
@@ -25,16 +25,16 @@ class Speed9Component extends React.Component<Props, State> {
 			<div>
 				<h1>9ゲーム</h1>
 				<div>
-					{this.renderStart()}
-					{this.renderProgress()}
+					{this.renderWait()}
+					{this.renderRun()}
 				</div>
 			</div>
 		)
 	}
 
-	renderStart = () => {
-		const { props } = this
-		if (props.game.isStarting) {
+	renderWait = () => {
+		const { props, state } = this
+		if (state.process !== 'wait') {
 			return null
 		}
 		return (
@@ -42,18 +42,30 @@ class Speed9Component extends React.Component<Props, State> {
 				<p>
 					<span>MaxScore: {props.game.maxScore}</span>
 				</p>
+				<p>
+					<button onClick={this.start}>Start</button>
+				</p>
 			</div>
 		)
 	}
 
-	renderProgress = () => {
+	start = () => {
+		const intervalId = setInterval(this.countDown, 10)
+		this.setState({ process: 'run', intervalId, time: 0 })
+	}
+
+	countDown = () => {
+		this.setState({ time: this.state.time + 1 })
+	}
+
+	renderRun = () => {
 		const { props, state } = this
-		if (!props.game.isStarting) {
+		if (state.process !== 'run') {
 			return null
 		}
 		return (
 			<div>
-				<p>Time: {state.time}</p>
+				<p>Time: {state.time / 100}</p>
 			</div>
 		)
 	}
