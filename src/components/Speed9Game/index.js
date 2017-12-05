@@ -62,7 +62,7 @@ class Speed9Component extends React.Component<Props, State> {
 
 	finish = () => {
 		clearInterval(this.state.intervalId)
-		this.props.record(this.state.time)
+		this.props.record(this.state.time / 100)
 		this.setState({ process: 'wait', time: 0 })
 	}
 
@@ -87,11 +87,36 @@ class Speed9Component extends React.Component<Props, State> {
 		return (
 			<div>
 				<p>Time: {state.time / 100}</p>
-				{[...Array(9).keys()].map(v => v + 1).map(v => (
-					<button key={v} onClick={this.pushHandle(v)}>
-						{v}
-					</button>
-				))}
+				<div className="box">
+					{[...Array(9).keys()].map(v => v + 1).map(num => (
+						<div key={num} className="point_button">
+							<button
+								className={num <= state.point ? 'disable' : 'active'}
+								onClick={this.pushHandle(num)}
+							>
+								{num}
+							</button>
+						</div>
+					))}
+				</div>
+				<style jsx>{`
+					.box {
+						display: flex;
+						flex-wrap: wrap;
+					}
+
+					.point_button {
+						width: 30%;
+					}
+
+					button: {
+						text-align: center;
+					}
+
+					.disable {
+						color: gray;
+					}
+				`}</style>
 			</div>
 		)
 	}
