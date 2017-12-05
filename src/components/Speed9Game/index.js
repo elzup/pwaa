@@ -46,7 +46,10 @@ class Speed9Component extends React.Component<Props, State> {
 		return (
 			<div>
 				<p>
-					<span>MaxScore: {props.game.maxScore}</span>
+					<span>Score: {props.game.prevScore || '-'}</span>
+				</p>
+				<p>
+					<span>MaxScore: {props.game.maxScore || '-'}</span>
 				</p>
 				<p>
 					<button onClick={this.start}>Start</button>
