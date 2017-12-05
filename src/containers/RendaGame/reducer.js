@@ -43,6 +43,9 @@ export default function(state: State = initialState, action: Action): State {
 			}
 
 		case 'persist/REHYDRATE':
+			if (!action.payload) {
+				return state
+			}
 			return {
 				...state,
 				maxScore: action.payload.RendaGame.maxScore,
