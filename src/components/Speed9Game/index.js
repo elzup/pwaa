@@ -10,6 +10,7 @@ export type Props = {
 export type State = {
 	intervalId: number,
 	time: number,
+	point: number,
 	process: 'run' | 'wait',
 }
 
@@ -17,6 +18,7 @@ class Speed9Component extends React.Component<Props, State> {
 	state = {
 		intervalId: 0,
 		time: 0,
+		point: 0,
 		process: 'wait',
 	}
 
@@ -51,11 +53,30 @@ class Speed9Component extends React.Component<Props, State> {
 
 	start = () => {
 		const intervalId = setInterval(this.countDown, 10)
-		this.setState({ process: 'run', intervalId, time: 0 })
+		this.setState({ process: 'run', intervalId, time: 0, point: 0 })
 	}
 
 	countDown = () => {
 		this.setState({ time: this.state.time + 1 })
+	}
+
+	finish = () => {
+		clearInterval(this.state.intervalId)
+		this.props.record(this.state.time)
+		this.setState({ process: 'wait', time: 0 })
+	}
+
+	pushHandle = (num: number) => {
+		return () => {
+			const nextPoint = this.state.point + 1
+			console.log(this.state)
+			if (nextPoint === num) {
+				this.setState({ point: nextPoint })
+				if (nextPoint === 9) {
+					this.finish()
+				}
+			}
+		}
 	}
 
 	renderRun = () => {
@@ -66,6 +87,11 @@ class Speed9Component extends React.Component<Props, State> {
 		return (
 			<div>
 				<p>Time: {state.time / 100}</p>
+				{[...Array(9).keys()].map(v => v + 1).map(v => (
+					<button key={v} onClick={this.pushHandle(v)}>
+						{v}
+					</button>
+				))}
 			</div>
 		)
 	}
