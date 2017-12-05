@@ -41,3 +41,8 @@ export type RendaGame = {
 	prevScore: number,
 	maxScore: number,
 }
+
+export type Speed9Game = {
+	prevScore: ?number,
+	maxScore: ?number,
+}
