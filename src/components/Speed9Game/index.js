@@ -2,6 +2,8 @@
 import * as React from 'react'
 import type { Speed9Game } from '../../types'
 
+import _ from 'lodash'
+
 export type Props = {
 	game: Speed9Game,
 	record: Function,
@@ -11,6 +13,7 @@ export type State = {
 	intervalId: number,
 	time: number,
 	point: number,
+	nums: nubmer[],
 	process: 'run' | 'wait',
 }
 
@@ -20,6 +23,7 @@ class Speed9Component extends React.Component<Props, State> {
 		time: 0,
 		point: 0,
 		process: 'wait',
+		nums: [],
 	}
 
 	render() {
@@ -53,7 +57,13 @@ class Speed9Component extends React.Component<Props, State> {
 
 	start = () => {
 		const intervalId = setInterval(this.countDown, 10)
-		this.setState({ process: 'run', intervalId, time: 0, point: 0 })
+		this.setState({
+			process: 'run',
+			intervalId,
+			time: 0,
+			point: 0,
+			nums: _.shuffle(_.range(1, 10)),
+		})
 	}
 
 	countDown = () => {
@@ -88,7 +98,7 @@ class Speed9Component extends React.Component<Props, State> {
 			<div>
 				<p>Time: {state.time / 100}</p>
 				<div className="box">
-					{[...Array(9).keys()].map(v => v + 1).map(num => (
+					{state.nums.map(num => (
 						<div key={num} className="point_button">
 							<button
 								className={num <= state.point ? 'disable' : 'active'}
@@ -111,6 +121,7 @@ class Speed9Component extends React.Component<Props, State> {
 
 					button: {
 						text-align: center;
+						background: blue;
 					}
 
 					.disable {
